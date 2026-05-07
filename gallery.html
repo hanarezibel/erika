@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Journey Gallery</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Times New Roman", Times, serif;
+        }
+
+        body {
+            background-color: #F0D9EF; /* Original light purple background */
+            color: black;
+        }
+
+        header {
+            background-color: #E9BCEC;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid white;
+        }
+
+        header h1 {
+            font-size: 28px;
+            color: black;
+            letter-spacing: 2px;
+        }
+
+        nav a {
+            color: black;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 18px;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            font-weight: bold;
+        }
+
+        .banner {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #F0D9EF;         }
+
+              .banner h2 {
+            display: inline-block;
+            color: #000033; 
+            font-size: 36px;
+            border-bottom: 4px solid white; 
+            padding-bottom: 12px; 
+            min-width: 320px; 
+        }
+
+        section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 25px;
+        }
+
+        .gallery-item {
+            background-color: #112240; 
+            border: 2px solid black;
+            border-radius: 10px;
+            overflow: hidden;
+            width: 280px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .content {
+            padding: 15px;
+            color: white;
+            text-align: center;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #E9BCEC;
+        }
+
+        /* Zoom Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: white;
+        }
+
+        .lightbox img {
+            max-width: 85%;
+            max-height: 75vh;
+            border: 3px solid white;
+            border-radius: 5px;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 50px;
+            cursor: pointer;
+            color: #E9BCEC;
+        }
+        
+        .lightbox-text {
+            text-align: center;
+            margin-top: 15px;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Gallery</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="diary.html">Diary</a>
+        <a href="gallery.html">Gallery</a>
+        <a href="contact.html">Contact</a>
+
+    </nav>
+</header>
+
+<div class="banner">
+    <h2>College Memories</h2>
+</div>
+
+<section id="gallerySection">
+    <div class="gallery-item" onclick="openLightbox('ENROLLMENT DAY!.jpg', 'ENROLLMENT DAY!', 'This is my enrollment day at CSTA to become a 1st year college student.')">
+        <img src="ENROLLMENT DAY!.jpg" alt="Enrollment Day">
+        <div class="content"><h3>ENROLLMENT DAY!</h3><p>My first day as a CSTA student.</p></div>
+    </div>
+<div class="gallery-item" onclick="openLightbox('OVERALL CHAMPION BSIT.jpg', 'OVERALL CHAMPION BSIT!', 'So proud that our department are the champion in overall activities and sports!')">
+        <img src="OVERALL CHAMPION BSIT.jpg" alt="Champion">
+        <div class="content"><h3>OVERALL CHAMPION</h3><p>Proud BSIT Department!</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('FIRST MASS.jpg', 'OUR FIRST MASS', 'Our first mass at STSN.')">
+        <img src="FIRST MASS.jpg" alt="First Mass">
+        <div class="content"><h3>OUR FIRST MASS</h3><p>A spiritual start to my journey.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('FUN RUN.jpg', 'FUN RUN', 'This was our first activity, the fun run. It was fun and we all enjoyed it!')">
+        <img src="FUN RUN.jpg" alt="Fun Run">
+        <div class="content"><h3>FUN RUN</h3><p>First major campus activity!</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('HAPPY MOMENT.jpg', 'HAPPY MOMENT', 'After class we have lunch together—the happy part of every school day.')">
+        <img src="HAPPY MOMENT.jpg" alt="Happy Moment">
+        <div class="content"><h3>HAPPY MOMENT</h3><p>Lunch breaks with the squad.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('HARDWARE ACTIVITY.jpg', 'HARDWARE ACTIVITY', 'An activity where I learned a lot. I proved to myself that I can do it!')">
+        <img src="HARDWARE ACTIVITY.jpg" alt="Hardware Activity">
+        <div class="content"><h3>HARDWARE ACTIVITY</h3><p>Testing my technical skills.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('TEAMWORK.jpg', 'TEAMWORK', 'Working together in the library to submit our activities on time.')">
+        <img src="TEAMWORK.jpg" alt="Teamwork">
+        <div class="content"><h3>TEAMWORK</h3><p>Collaboration at the library.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('MY CERTIFICATES.jpg', 'MY CERTIFICATES', 'These certificates from various seminars have been a big help for my growth.')">
+        <img src="MY CERTIFICATES.jpg" alt="Certificates">
+        <div class="content"><h3>MY CERTIFICATES</h3><p>Professional growth through seminars.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('IT WEEK 2024!.jpg', 'IT WEEK 2024!', 'Making the most of our first IT week experience and having fun.')">
+        <img src="IT WEEK 2024!.jpg" alt="IT Week">
+        <div class="content"><h3>IT WEEK 2024!</h3><p>First IT department celebration.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('PROGRAMMING TIME.jpg', 'PROGRAMMING TIME', 'Activity time in CPRO! Stressful but exciting as we race to finish our code first.')">
+        <img src="PROGRAMMING TIME.jpg" alt="Java Programming" class="code-img">
+        <div class="content"><h3>PROGRAMMING TIME</h3><p>Coding challenges in the lab.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('SPORTFEST 2025!.jpg', 'SPORTFEST 2025!', 'Supporting our department in the cheerdance competition on the first day of Sportfest!')">
+        <img src="SPORTFEST 2025!.jpg" alt="Sportfest 2025">
+        <div class="content"><h3>SPORTFEST 2025!</h3><p>Cheering for the IT department!</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('2ND YEAR!.jpg', '2ND YEAR!', 'First day of being a 2nd year college student! Time flies so fast.')">
+        <img src="2ND YEAR!.jpg" alt="Second Year Start">
+        <div class="content"><h3>2ND YEAR!</h3><p>Starting the sophomore journey.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('NEW FRIENDS, NEW MEMORIES.jpg', 'NEW FRIENDS, NEW MEMORIES', 'My second-year schedule! New people to meet and new learning to know.')">
+        <img src="NEW FRIENDS, NEW MEMORIES.jpg" alt="New Schedule">
+        <div class="content"><h3>NEW FRIENDS</h3><p>Expanding my circle in Year 2.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('ACTIVITY.jpg', 'NETWORKING ACTIVITY', 'Our first hardware task this year. I learned a lot about connections.')">
+        <img src="ACTIVITY.jpg" alt="Activity">
+        <div class="content"><h3>ACTIVITY</h3><p>Hands-on networking tasks.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('FIGMA ACTIVITY.jpg', 'FIGMA ACTIVITY', 'I am amazed in this subject because I learn to explore design.')">
+        <img src="FIGMA ACTIVITY.jpg" alt="Figma Design">
+        <div class="content"><h3>FIGMA ACTIVITY</h3><p>Learning UI/UX Design.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('PROGRAM.jpg', 'PROGRAM', 'Watching creative performances from other departments.')">
+        <img src="PROGRAM.jpg" alt="Program">
+        <div class="content"><h3>PROGRAM</h3><p>Creative campus events.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('FIGMA PROJECT.jpg', 'FIGMA PROJECT', 'Expressing my creativity through this challenging 1st sem final project.')">
+        <img src="FIGMA PROJECT.jpg" alt="Figma Project">
+        <div class="content"><h3>FIGMA PROJECT</h3><p>Final UI/UX output.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('2ND SEMESTER.jpg', '2ND SEMESTER', 'Nervous for our major subject quiz, but I passed! So proud of myself.')">
+        <img src="2ND SEMESTER.jpg" alt="Quiz Result">
+        <div class="content"><h3>2ND SEMESTER</h3><p>Surviving major subject quizzes.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('APPDEV ACTIVITY.jpg', 'APPDEV ACTIVITY', 'Challenging wirings for our PCB activity.')">
+        <img src="APPDEV ACTIVITY.jpg" alt="AppDev">
+        <div class="content"><h3>APPDEV ACTIVITY</h3><p>PCB and hardware development.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('YEAR END PARTY 2024!.jpg', 'YEAR END PARTY 2024!', 'The year-end party was so much fun!')">
+        <img src="YEAR END PARTY 2024!.jpg" alt="Year End Party">
+        <div class="content"><h3>YEAR END PARTY</h3><p>Celebrating the end of 2024.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('ARDUINO.jpg', 'ARDUINO', 'Enjoying learning how these components work together.')">
+        <img src="ARDUINO.jpg" alt="Arduino">
+        <div class="content"><h3>ARDUINO</h3><p>Logic and hardware integration.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('SPORTFEST 2026!.jpg', 'SPORTFEST 2026!', 'IT Department pride during Sportfest 2026!')">
+        <img src="SPORTFEST 2026!.jpg" alt="Sportfest 2026">
+        <div class="content"><h3>SPORTFEST 2026!</h3><p>Representing the department.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('DAY 2.jpg', 'SPORTFEST DAY 2', 'Intense volleyball matches at the gym!')">
+        <img src="DAY 2.jpg" alt="Day 2">
+        <div class="content"><h3>DAY 2</h3><p>Cheering from the bleachers.</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('MIDTERM EXAM.jpg', 'MIDTERM EXAM', 'A stressful hardware project finished just before the deadline. So happy!')">
+        <img src="MIDTERM EXAM.jpg" alt="Midterm">
+        <div class="content"><h3>MIDTERM EXAM</h3><p>Hardware project success!</p></div>
+    </div>
+
+<div class="gallery-item" onclick="openLightbox('MS AND MRS CSTA.jpg', 'Mr. & Mrs. CSTA', 'Supporting our section on the day of his fight. He won—not bad for a first timer!')">
+        <img src="MS AND MRS CSTA.jpg" alt="Pageant">
+        <div class="content"><h3>MR & MRS CSTA</h3><p>Pageant day victory!</p></div>
+    </div>
+
+    <div class="gallery-item" onclick="openLightbox('SUPPORT MY CLASSMATE.jpg', 'Supportive Friends', 'Supporting my friend during her screening for Mr. & Mrs. CSTA.')">
+        <img src="SUPPORT MY CLASSMATE.jpg" alt="Friends">
+        <div class="content"><h3>FRIENDSHIP</h3><p>Screening day support.</p></div>
+    </div>
+</section>
+
+<div id="galleryLightbox" class="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <div class="lightbox-content">
+        <img id="lightboxImg" src="" alt="Zoomed view">
+        <h3 id="lightboxTitle"></h3>
+        <p id="lightboxDescription"></p>
+    </div>
+</div>
+
+
+<script>
+    const lightbox = document.getElementById('galleryLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxTitle = document.getElementById('lightboxTitle');
+    const lightboxDescription = document.getElementById('lightboxDescription');
+
+    function openLightbox(imgSrc, title, description) {
+        lightboxImg.src = imgSrc;
+        lightboxTitle.innerText = title;
+        lightboxDescription.innerText = description;
+        lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+        lightbox.style.display = 'none';
+    }
+
+    lightbox.onclick = function(event) {
+        if (event.target == lightbox) {
+            closeLightbox();
+        }
+    }
+</script>
+
+</body>
+</html>
